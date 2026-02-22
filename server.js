@@ -28,25 +28,6 @@ app.get("/logout", (req, res) => {
   res.redirect("/login");
 });
 
-async function startServer() {
-  try {
-    // Run migrations in production
-    if (process.env.NODE_ENV === 'production') {
-      console.log('Running production migrations...');
-      await runMigrations();
-    }
-    
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-      console.log(`✅ Server running on port ${PORT}`);
-    });
-  } catch (error) {
-    console.error('❌ Failed to start:', error);
-    process.exit(1);
-  }
-}
-
-startServer();
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
