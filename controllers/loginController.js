@@ -7,8 +7,9 @@ function loginForm(req, res) {
 }
 
 async function loginUser(req, res) {
+  console.log("request comes")
   const { username, email, password } = req.body;
-
+  console.log(username, email, password)
   if (!username || !email || !password) {
     return res.status(400).json({ error: "All fields are required" });
   }
@@ -27,6 +28,7 @@ async function loginUser(req, res) {
 
   try {
     const user = await getUserFromDB(email);
+    console.log("user is:", user)
 
     const isValid = await bcrypt.compare(password, user.hash_password);
 
